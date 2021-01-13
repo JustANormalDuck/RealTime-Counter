@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="background_styles.css">
+      <link rel="stylesheet" href="styles.css">
+      <title>Counter Demo</title>
+      <meta charset="utf-8">
+   </head>
+   <body>
+		 <h1>Counter Demo</h1>	 
+		 <p id="buttonCount">0 People are confused by the current topic.</p>
+		 <button onclick="buttonClicked()">Click me</button>
+		 <script src="/socket.io/socket.io.js"></script>
+		 <script>
+			 var socket = io.connect();
+			 function buttonClicked(){
+			   socket.emit('clicked1');
+			 }
+         
+			 //when we receive numClients, do this
+			 socket.on('buttonUpdate1', function(data){
+            progressBar = document.getElementsByClassName('progress-bar')[0];
+            computedStyle = getComputedStyle(progressBar);
+            width = parseFloat(computedStyle.getPropertyValue('--width')) || 0;
+            progressBar.style.setProperty('--width', data);
+            
+                if(data==1)
+                 document.getElementById("buttonCount").innerHTML = data + ' person is confused by the current topic';
+                else
+                 document.getElementById("buttonCount").innerHTML = data + ' people are confused by the current topic';
+                 //Playing a notification sound at 5 clicks:
+                 if(data==0)
+                 {
+                   
+                    var audio = new Audio('file_example_MP3_700KB.mp3');
+                    audio.play(); 
+                 document.getElementById("buttonCount").innerHTML = 'People are confused';
+                 } 
+                 
+            }
+             
+            );
+      </script>
+          <div class="progress-bar" style="--width: 10" data-label="Confusion Meter"></div>
+   </body>
+</html>

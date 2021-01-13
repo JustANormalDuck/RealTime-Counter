@@ -1,46 +1,28 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <link rel="stylesheet" href="background_styles.css">
-      <link rel="stylesheet" href="styles.css">
-      <title>Counter Demo</title>
-      <meta charset="utf-8">
-   </head>
-   <body>
-		 <h1>Counter Demo</h1>	 
-		 <p id="buttonCount">0 People are confused by the current topic.</p>
-		 <button onclick="buttonClicked()">Click me</button>
-		 <script src="/socket.io/socket.io.js"></script>
-		 <script>
-			 var socket = io.connect();
-			 function buttonClicked(){
-			   socket.emit('clicked');
-			 }
-         
-			 //when we receive numClients, do this
-			 socket.on('buttonUpdate', function(data){
-            progressBar = document.getElementsByClassName('progress-bar')[0];
-            computedStyle = getComputedStyle(progressBar);
-            width = parseFloat(computedStyle.getPropertyValue('--width')) || 0;
-            progressBar.style.setProperty('--width', data);
-            
-                if(data==1)
-                 document.getElementById("buttonCount").innerHTML = data + ' person is confused by the current topic';
-                else
-                 document.getElementById("buttonCount").innerHTML = data + ' people are confused by the current topic';
-                 //Playing a notification sound at 5 clicks:
-                 if(data==0)
-                 {
-                   
-                    var audio = new Audio('file_example_MP3_700KB.mp3');
-                    audio.play(); 
-                 document.getElementById("buttonCount").innerHTML = 'People are confused';
-                 } 
-                 
-            }
-             
-            );
-      </script>
-          <div class="progress-bar" style="--width: 10" data-label="Confusion Meter"></div>
-   </body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+			integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="mainpage.css" />
+		<title>Teacher Helper</title>
+	</head>
+	<body>
+		<div class="join-container">
+			<header class="join-header">
+				<h1><i class="fas fa-smile"></i> Teacher Helper</h1>
+			</header>
+			
+            <a href="counter1.html">Test</a> <br>
+			<a href="counter2.html">Test2</a>
+				</form>
+			</main>
+		</div>
+	</body>
 </html>
