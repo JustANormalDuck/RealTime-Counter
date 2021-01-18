@@ -20,8 +20,7 @@ io.on('connection', function(client) {
                 clickCount1=0;
           //send a message to ALL connected clients
         
-          io.emit('buttonUpdate1', clickCount1);
-        
+          io.emit('buttonUpdate1', clickCount1);   
     });
     client.on('clicked2', function(data) {
       clickCount2++;
